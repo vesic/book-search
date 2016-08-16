@@ -3,11 +3,15 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
+    "faker": "^3.1.0",
     "react-scripts": "0.2.1"
   },
   "dependencies": {
+    "async": "^2.0.1",
     "cors": "^2.7.1",
     "express": "^4.14.0",
+    "lodash": "^4.15.0",
+    "mongoose": "^4.5.9",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-router": "^2.6.1"
