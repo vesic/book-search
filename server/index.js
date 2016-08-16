@@ -10,7 +10,7 @@ app.use(express.static('build'));
 if (app.get('env') === 'development') app.use(require('cors')());
 
 app.get('/', (req, res) => {
-  res.send(path.join(__dirname, 'index.html'));
+  res.sendFile('index.html');
 });
 
 app.use((req, res) => {
