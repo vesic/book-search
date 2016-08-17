@@ -6,6 +6,19 @@ var Comment = require('../models/Comment');
 var faker = require('faker');
 var _ = require('lodash');
 var async = require('async');
+var multer  = require('multer')
+var path = require('path');
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join('public', 'img'));
+  },
+  filename: function (req, file, cb) {
+    cb(null, `${Date.now()}-${file.originalname}`)
+  }
+})
+
+var upload = multer({ storage: storage })
 
 router.get('/', (req, res) => {
   Book.find({}, (err, data) => {
@@ -79,6 +92,19 @@ router.get('/comments/seed', (req, res) => {
     })
   });
 
+});
+
+// upload book
+router.post('/new', upload.single('file'), (req, res) => {
+  new Book({
+    title: req.body.title,
+    author: req.body.author,
+    details: req.body.details,
+    category: req.body.category,
+    path: req.file.filename,
+  }).save((err, data) => {
+    res.status(201).send('Ok');
+  });
 });
 
 // single test

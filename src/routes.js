@@ -2,11 +2,11 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import App from './App';
 import Home from './components/Home';
+import NewBook from './components/NewBook';
 
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Home}/>
+    <Route path='new' component={NewBook} />
   </Route>
 )
-
-// export default routes;

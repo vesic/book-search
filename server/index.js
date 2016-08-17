@@ -2,6 +2,7 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var bodyParser = require('body-parser')
 
 // mongo
 var mongoose = require('mongoose');
@@ -16,6 +17,12 @@ app.set('port', process.env.PORT || 3333);
 
 app.use(express.static('build'));
 app.use(express.static('public'));
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 app.use('/books', require('cors')(), require('./routes/books'));
 
