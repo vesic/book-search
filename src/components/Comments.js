@@ -14,7 +14,7 @@ class Comments extends Component {
 
     return (
       <div className=''>
-        <h3 className='text-center'>Comments</h3>
+        <h4 style={{ borderBottom: '3px solid' }}>{ _.toUpper('Latest Comments') }</h4>
         <div className="list-group">
           { comments }
         </div>

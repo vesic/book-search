@@ -7,7 +7,7 @@ class LatestBooks extends Component {
       return (
         <div key={ book._id } className="col-xs-6">
           <a href="#" className="thumbnail">
-            <img src={`img/${book.path}`} />
+            <img src={`img/${book.path}`} alt=''/>
             <div className="caption">
               { book.title.slice(0, 7) }
             </div>
@@ -16,8 +16,8 @@ class LatestBooks extends Component {
       )
     });
     return (
-      <div className='text-center'>
-        <h4>{ _.toUpper('latest books') }</h4>
+      <div className=''>
+        <h4 style={{ borderBottom: '3px solid' }}>{ _.toUpper('latest books') }</h4>
         { latest }
       </div>
     );

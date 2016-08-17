@@ -12,10 +12,6 @@ class CategoryList extends Component {
 
     this.setSelectedCategory = this.setSelectedCategory.bind(this);
   }
-  
-  componentDidMount() {
-    // this.state.categories = _.map(this.props.books, )
-  }
 
   setSelectedCategory(selected) {
     console.log(selected);
@@ -36,13 +32,13 @@ class CategoryList extends Component {
 
     return (
       <div className=''>
-        <h4 className='text-center'>{ _.toUpper('Categories') }</h4>
+        <h4 style={{ borderBottom: '3px solid' }} className=''>{ _.toUpper('Categories') }</h4>
           <ul className="nav nav-pills nav-stacked">
           {
             _.map( categories, (single, index) => 
               <li key={ index } 
                 onClick={ this.setSelectedCategory.bind(null, single.category) }
-                role="presentation" className={ this.state.selected === single.category ? 'active' : '' } ><a href="#">{ single.category }</a></li>
+                role="presentation" className={ this.state.selected === single.category ? 'active' : '' } ><a href="#">{ _.toUpper(single.category) }</a></li>
             )
           }
           </ul>

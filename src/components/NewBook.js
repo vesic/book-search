@@ -21,7 +21,9 @@ class NewBook extends Component {
       <div className='container'>
 
         <div className='col-md-10 col-md-offset-1'>
-          <h1>New book!</h1>
+          <h1 style={{
+            borderBottom: '3px solid'
+          }}>New book!</h1>
           <form onSubmit={ this.onSubmit } encType="multipart/form-data">
             <div className="form-group">
               <label htmlFor="title">Book title</label>
@@ -62,7 +64,7 @@ class NewBook extends Component {
               <input ref="image" type="file" id="image" name='image'/>
               <p className="help-block">Choose cover image</p>
             </div>
-            <button type="submit" className="btn btn-default">Submit</button>
+            <button type="submit" className="btn btn-primary">Submit</button>
           </form>
         </div>
 
@@ -79,6 +81,7 @@ class NewBook extends Component {
     data.append('category', this.state.category);
     data.append('file', this.refs.image.files[0]);
     axios.post('https://polar-plateau-36502.herokuapp.com/books/new', data)
+    // axios.post('http://localhost:3333/books/new', data)
       .then(res => {
         if (res.status === 201) {
           hashHistory.push('/')

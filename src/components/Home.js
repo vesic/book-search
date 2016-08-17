@@ -26,10 +26,8 @@ class Home extends Component {
           let latest = _.take(
                         _.reverse(
                           _.sortBy(response.data, (single) => single.date))
-                            , 6);
+                            , 4);
           this.setState({ latest });
-
-          // let comments = 
         });
       })
 
@@ -40,7 +38,7 @@ class Home extends Component {
 
     this.getComments()
       .then((response) => {
-        this.setState({ comments: _.take(response.data, 5) });
+        this.setState({ comments: _.take(_.reverse(response.data), 5) });
       }) 
   }
 
@@ -60,6 +58,7 @@ class Home extends Component {
     return (
       <div className='container'>
         <SearchBar searchForBooks={ this.searchForBooks }/>
+        <div className='page-header'></div>
         <div className='row'>
           <SideBar 
             categories={ this.state.categories }

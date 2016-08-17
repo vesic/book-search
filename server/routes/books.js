@@ -12,6 +12,7 @@ var path = require('path');
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.join('public', 'img'));
+    // cb(null, 'img');
   },
   filename: function (req, file, cb) {
     cb(null, `${Date.now()}-${file.originalname}`)
@@ -20,8 +21,18 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage })
 
+// get all
 router.get('/', (req, res) => {
   Book.find({}, (err, data) => {
+    res.send(data);
+  })
+});
+
+// get single
+router.get('/:id', (req, res) => {
+  if (!req.params.id) res.status(400).send({ msg: 'Id not provided' });
+
+  Book.findById(req.params.id, (err, data) => {
     res.send(data);
   })
 });
@@ -94,6 +105,14 @@ router.get('/comments/seed', (req, res) => {
 
 });
 
+// post comments
+router.post('/comments', (req, res) => {
+  console.log(req.body)
+  new Comment(req.body).save((err, data) => {
+    res.status(201).send('Comment created!');
+  })
+});
+
 // upload book
 router.post('/new', upload.single('file'), (req, res) => {
   new Book({
@@ -105,11 +124,6 @@ router.post('/new', upload.single('file'), (req, res) => {
   }).save((err, data) => {
     res.status(201).send('Ok');
   });
-});
-
-// single test
-router.get('/single', (req, res) => {
-  new Book({title: 'Hello world 3', author: 'me 3', details:'some stuff 3', category:'Express'}).save((err, data) => res.send(data) );
 });
 
 module.exports = router;

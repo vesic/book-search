@@ -10,11 +10,8 @@ class Navbar extends Component {
             <a className="navbar-brand" href="#">Book Search</a>
           </div>
           <ul className="nav navbar-nav navbar-right">
-            <li><a href="#">Home</a></li>
             <li><Link to='/new'>Add Book</Link></li>
-            <li><a href="#">Page 1</a></li>
-            <li><a href="#">Page 2</a></li> 
-            <li><a href="#">Page 3</a></li> 
+            <li><Link to='/'>About</Link></li>
           </ul>
         </div>
       </nav>

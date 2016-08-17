@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router';
 
 class Book extends Component {
   render() {
@@ -7,11 +8,9 @@ class Book extends Component {
     return (
       <div className="col-sm-6 col-md-4 col-lg-3">
         <div className="thumbnail">
-          <img src={`img/${book.path}`} alt="..." />
+          <Link to={`books/${book._id}`} ><img src={`img/${book.path}`} alt=''/></Link>
           <div className="caption">
-            <h3>{ book.title.slice(0, 10) }</h3>
-            <p>{ book.details.slice(0, 50) }</p>
-            <p><a href="#" className="btn btn-primary" role="button">Button</a> <a href="#" className="btn btn-default" role="button">Button</a></p>
+            <h4>{ book.title.slice(0, 10) }</h4>
           </div>
         </div>
       </div>

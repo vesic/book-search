@@ -14,7 +14,12 @@ class SearchBar extends Component {
   
   render() {
     return (
-      <div className="row">
+      <div 
+        style={{
+          marginBottom: 40,
+          marginTop: 40
+        }}
+        className="row">
         <div className="col-md-8 col-md-offset-2">
           <div className="input-group">
             <input 
