@@ -2,6 +2,7 @@
 var express = require('express');
 var router = express.Router();
 var Book = require('../models/Book');
+var Comment = require('../models/Comment');
 var faker = require('faker');
 var _ = require('lodash');
 var async = require('async');
@@ -50,6 +51,33 @@ router.get('/seed', (req, res) => {
       })
     }
   ]);
+
+});
+
+// get comments
+router.get('/comments/', (req, res) => {
+  Comment.find({}, (err, data) => res.send(data));
+});
+
+// seed comments
+router.get('/comments/seed', (req, res) => {
+  
+  let comments = [];
+  _.times(10, (index) => {
+    comments.push(
+      new Comment({
+        title: faker.random.word(),
+        body: faker.random.words(5),
+        bookId: "57b3fd0c62f6dd001361212e"
+      })
+    )
+  })
+
+  Comment.remove({}, () => {
+    Comment.create(comments, (err, data) => {
+      res.send(`${data.length} comments created!`);
+    })
+  });
 
 });
 

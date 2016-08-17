@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var Comment = require('./Comment');
 var Schema = mongoose.Schema;
 
 var bookSchema = new Schema({
@@ -7,7 +8,7 @@ var bookSchema = new Schema({
   details: String,
   category: String,
   path: String,
-  comments: [{ body: String, date: Date }],
+  comments: [ Comment ],
   date: { type: Date, default: Date.now },
 });
 

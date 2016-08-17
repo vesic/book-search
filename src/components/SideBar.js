@@ -11,13 +11,13 @@ class SideBar extends Component {
   }
   
   render() {
-    const { categories } = this.props;
+    const { categories, comments, latest } = this.props;
 
     return (
       <div className='col-sm-3'>
-        <CategoryList categories={categories} filterBooks={this.filterBooks}/>
-        <LatestBooks latest={this.props.latest}/>
-        <Comments />
+        <CategoryList categories={ categories } filterBooks={this.filterBooks}/>
+        <LatestBooks latest={ latest }/>
+        <Comments comments={ comments} />
       </div>
     );
   }
@@ -25,6 +25,7 @@ class SideBar extends Component {
   filterBooks(selected) {
     this.props.filterBooks(selected);
   }
+  
 }
 
 export default SideBar;

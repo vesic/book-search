@@ -12,7 +12,6 @@ class Home extends Component {
     this.state = {
       books: [],
       categories: [],
-      filteredBooks: null,
       latest: []
     }
 
@@ -29,6 +28,8 @@ class Home extends Component {
                           _.sortBy(response.data, (single) => single.date))
                             , 6);
           this.setState({ latest });
+
+          // let comments = 
         });
       })
 
@@ -36,6 +37,11 @@ class Home extends Component {
       .then((response) => {
           this.setState({ categories: response.data });
         })
+
+    this.getComments()
+      .then((response) => {
+        this.setState({ comments: _.take(response.data, 5) });
+      }) 
   }
 
   getBooks() {
@@ -46,6 +52,10 @@ class Home extends Component {
     return axios.get('https://polar-plateau-36502.herokuapp.com/books/categories');
   }
 
+  getComments() {
+    return axios.get('https://polar-plateau-36502.herokuapp.com/books/comments');
+  }
+
   render() {
     return (
       <div className='container'>
@@ -54,8 +64,9 @@ class Home extends Component {
           <SideBar 
             categories={ this.state.categories }
             filterBooks={ this.filterBooks }
-            latest={ this.state.latest } />
-          <BookList books={this.state.filteredBooks == null ? this.state.books : this.state.filteredBooks}/>
+            latest={ this.state.latest } 
+            comments={ this.state.comments } />
+          <BookList books={this.state.books}/>
         </div>
       </div>
     );
