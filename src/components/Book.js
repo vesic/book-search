@@ -7,7 +7,7 @@ class Book extends Component {
     return (
       <div className="col-sm-6 col-md-4 col-lg-3">
         <div className="thumbnail">
-          <img src="book.png" alt="..." />
+          <img src="img/book.png" alt="..." />
           <div className="caption">
             <h3>{ book.title.slice(0, 10) }</h3>
             <p>{ book.details.slice(0, 50) }</p>

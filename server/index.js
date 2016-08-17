@@ -15,7 +15,7 @@ db.once('open', function() {
 app.set('port', process.env.PORT || 3333);
 
 app.use(express.static('build'));
-app.use(express.static('img'));
+app.use(express.static('public'));
 
 app.use('/books', require('cors')(), require('./routes/books'));
 

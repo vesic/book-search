@@ -17,10 +17,11 @@ class Home extends Component {
     }
 
     this.filterBooks = this.filterBooks.bind(this);
+    this.searchForBooks = this.searchForBooks.bind(this);
   }
   
   componentDidMount() {
-    axios.get('https://polar-plateau-36502.herokuapp.com/books')
+    this.getBooks()
       .then((response) => {
         this.setState({ books: response.data }, () => {
           let latest = _.take(
@@ -30,17 +31,25 @@ class Home extends Component {
           this.setState({ latest });
         });
       })
-    
-    axios.get('https://polar-plateau-36502.herokuapp.com/books/categories')
+
+    this.getCategories()
       .then((response) => {
-        this.setState({ categories: response.data });
-      })
-}
+          this.setState({ categories: response.data });
+        })
+  }
+
+  getBooks() {
+    return axios.get('https://polar-plateau-36502.herokuapp.com/books');
+  }
+
+  getCategories() {
+    return axios.get('https://polar-plateau-36502.herokuapp.com/books/categories');
+  }
 
   render() {
     return (
       <div className='container'>
-        <SearchBar />
+        <SearchBar searchForBooks={ this.searchForBooks }/>
         <div className='row'>
           <SideBar 
             categories={ this.state.categories }
@@ -53,10 +62,27 @@ class Home extends Component {
   }
 
   filterBooks(selected) {
-    this.setState({
-      filteredBooks: _.filter(this.state.books, book => book.category === selected)
-    });
+    this.setState({books: []});
+    this.getBooks()
+      .then((response) => {
+        this.setState({
+          books: _.filter(response.data, book => book.category === selected)
+        });
+      })    
   }
+
+  searchForBooks(term) {
+    this.setState({books: []});
+    this.getBooks()
+      .then((response) => {
+        this.setState({
+          books: _.filter(response.data, (book) => _.startsWith(
+            _.toLower(book.title), _.toLower(term)
+          ))
+        });
+      })
+  }
+
 }
 
 export default Home;
