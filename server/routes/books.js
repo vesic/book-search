@@ -12,6 +12,15 @@ router.get('/', (req, res) => {
   })
 });
 
+// get categories
+router.get('/categories', (req, res) => {
+  Book.find({}, 'category', (err, data) => {
+    let categories = _.uniqBy(data, 'category');
+    categories = _.map(categories, single => { return { category: single.category }});
+    res.send(categories);
+  })
+});
+
 // seed books
 router.get('/seed', (req, res) => {
   let books = [];
@@ -22,6 +31,7 @@ router.get('/seed', (req, res) => {
         title: faker.system.fileName(),
         author: `${faker.name.firstName()} ${faker.name.lastName()}`,
         details: faker.lorem.paragraph(),
+        category: faker.random.arrayElement(['Javascript', 'Express', 'Mongo', 'React', 'Angular']),
         path: `image${index}.jpg`
       })
     )
@@ -41,6 +51,11 @@ router.get('/seed', (req, res) => {
     }
   ]);
 
+});
+
+// single test
+router.get('/single', (req, res) => {
+  new Book({title: 'Hello world 3', author: 'me 3', details:'some stuff 3', category:'Express'}).save((err, data) => res.send(data) );
 });
 
 module.exports = router;

@@ -4,14 +4,26 @@ import LatestBooks from './LatestBooks';
 import Comments from './Comments';
 
 class SideBar extends Component {
+  constructor(props) {
+    super(props);
+    
+    this.filterBooks = this.filterBooks.bind(this);
+  }
+  
   render() {
+    const { categories } = this.props;
+
     return (
       <div className='col-sm-3'>
-        <CategoryList />
-        <LatestBooks />
+        <CategoryList categories={categories} filterBooks={this.filterBooks}/>
+        <LatestBooks latest={this.props.latest}/>
         <Comments />
       </div>
     );
+  }
+
+  filterBooks(selected) {
+    this.props.filterBooks(selected);
   }
 }
 

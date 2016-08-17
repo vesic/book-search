@@ -5,6 +5,7 @@ var bookSchema = new Schema({
   title:  String,
   author: String,
   details: String,
+  category: String,
   path: String,
   comments: [{ body: String, date: Date }],
   date: { type: Date, default: Date.now },
