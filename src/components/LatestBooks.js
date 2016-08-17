@@ -7,7 +7,7 @@ class LatestBooks extends Component {
       return (
         <div key={ book._id } className="col-xs-6">
           <a href="#" className="thumbnail">
-            <img src={`img/${book.path}`} alt=''/>
+            <img src={book.path} alt=''/>
             <div className="caption">
               { book.title.slice(0, 7) }
             </div>

@@ -8,7 +8,7 @@ class Book extends Component {
     return (
       <div className="col-sm-6 col-md-4 col-lg-3">
         <div className="thumbnail">
-          <Link to={`books/${book._id}`} ><img src={`img/${book.path}`} alt=''/></Link>
+          <Link to={`books/${book._id}`} ><img src={book.path} alt=''/></Link>
           <div className="caption">
             <h4>{ book.title.slice(0, 10) }</h4>
           </div>

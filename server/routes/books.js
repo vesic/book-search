@@ -11,8 +11,8 @@ var path = require('path');
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join('public', 'img'));
-    // cb(null, 'img');
+    // cb(null, path.join('public', 'img'));
+    cb(null, 'public');
   },
   filename: function (req, file, cb) {
     cb(null, `${Date.now()}-${file.originalname}`)
@@ -26,6 +26,11 @@ router.get('/', (req, res) => {
   Book.find({}, (err, data) => {
     res.send(data);
   })
+});
+
+// get comments
+router.get('/comments', (req, res) => {
+  Comment.find({}, (err, data) => res.send(data));
 });
 
 // get single
@@ -76,11 +81,6 @@ router.get('/seed', (req, res) => {
     }
   ]);
 
-});
-
-// get comments
-router.get('/comments/', (req, res) => {
-  Comment.find({}, (err, data) => res.send(data));
 });
 
 // seed comments

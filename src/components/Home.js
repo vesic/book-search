@@ -31,10 +31,10 @@ class Home extends Component {
         });
       })
 
-    this.getCategories()
-      .then((response) => {
-          this.setState({ categories: response.data });
-        })
+    // this.getCategories()
+    //   .then((response) => {
+    //       this.setState({ categories: response.data });
+    //     })
 
     this.getComments()
       .then((response) => {
@@ -44,14 +44,16 @@ class Home extends Component {
 
   getBooks() {
     return axios.get('https://polar-plateau-36502.herokuapp.com/books');
+    // return axios.get('http://localhost:3333/books');
   }
 
-  getCategories() {
-    return axios.get('https://polar-plateau-36502.herokuapp.com/books/categories');
-  }
+  // getCategories() {
+  //   return axios.get('https://polar-plateau-36502.herokuapp.com/books/categories');
+  // }
 
   getComments() {
     return axios.get('https://polar-plateau-36502.herokuapp.com/books/comments');
+    // return axios.get('http://localhost:3333/books/comments');
   }
 
   render() {
@@ -61,7 +63,7 @@ class Home extends Component {
         <div className='page-header'></div>
         <div className='row'>
           <SideBar 
-            categories={ this.state.categories }
+            /* categories={ this.state.categories } */
             filterBooks={ this.filterBooks }
             latest={ this.state.latest } 
             comments={ this.state.comments } />

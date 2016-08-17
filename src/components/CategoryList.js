@@ -6,7 +6,7 @@ class CategoryList extends Component {
     super(props);
     
     this.state = {
-      categories: [],
+      categories: ['javascript', 'express', 'mongo', 'react', 'angular'],
       selected: ''
     }
 
@@ -20,9 +20,7 @@ class CategoryList extends Component {
   }
   
   render() {
-    const categories = this.props.categories;
-
-    if (categories.length === 0) {
+    if (this.state.categories === 0) {
       return (
         <div className='text-center'>
           <h3>Loading...</h3>
@@ -35,10 +33,10 @@ class CategoryList extends Component {
         <h4 style={{ borderBottom: '3px solid' }} className=''>{ _.toUpper('Categories') }</h4>
           <ul className="nav nav-pills nav-stacked">
           {
-            _.map( categories, (single, index) => 
+            _.map( this.state.categories, (single, index) => 
               <li key={ index } 
-                onClick={ this.setSelectedCategory.bind(null, single.category) }
-                role="presentation" className={ this.state.selected === single.category ? 'active' : '' } ><a href="#">{ _.toUpper(single.category) }</a></li>
+                onClick={ this.setSelectedCategory.bind(null, single) }
+                role="presentation" className={ this.state.selected === single ? 'active' : '' } ><a href="#">{ _.toUpper(single) }</a></li>
             )
           }
           </ul>

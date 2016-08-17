@@ -44,7 +44,7 @@ class BookDetails extends Component {
           <h3>Title: { this.state.book.title }</h3>
           <h4>Author: { this.state.book.author }</h4>
           <div className="thumbnail">
-            <img src={`img/${this.state.book.path}`} alt="..." />
+            <img src={this.state.book.path} alt="..." />
             <div className="caption">
               <h4>Details</h4>
               <p className=''>{ this.state.book.details }</p>
@@ -72,11 +72,14 @@ class BookDetails extends Component {
   }
 
   getBook(id) {
-    return axios.get(`https://polar-plateau-36502.herokuapp.com/${id}`);
+    return axios.get(`https://polar-plateau-36502.herokuapp.com/books/${id}`);
+    // return axios.get(`http://localhost:3333/books/${id}`);
   }
 
   getComments() {
     return axios.get('https://polar-plateau-36502.herokuapp.com/books/comments');
+    // return axios.get('http://localhost:3333/books/comments');
+  // }
   }
 
   commentForm() {
