@@ -5,8 +5,11 @@ class Comments extends Component {
   render() {
     const comments = _.map(this.props.comments, (comment) => {
       return (
-        <a key={ comment._id } href="#" className="list-group-item">
-          <h4 className="list-group-item-heading">{ comment.title }</h4>
+        <a 
+          onClick={ e => e.preventDefault() }
+          style={ { marginBottom: 10 } }
+          key={ comment._id } href="#" className="list-group-item">
+          <p className="list-group-item-heading"><strong>{ comment.title }</strong></p>
           <p className="list-group-item-text">{ comment.body }</p>
         </a>
       )

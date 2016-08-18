@@ -32,7 +32,9 @@ class BookDetails extends Component {
   render() {
     const comments = _.map(this.state.comments, comment => {
       return (
-        <a key={ comment._id } href="#" className="list-group-item">
+        <a 
+          style={ { marginBottom: 10 } }
+          key={ comment._id } href="#" className="list-group-item">
           <h4 className="list-group-item-heading"><strong>{ comment.title }</strong></h4>
           <p className="list-group-item-text">{ comment.body }</p>
         </a>

@@ -10,7 +10,7 @@ class Book extends Component {
         <div className="thumbnail">
           <Link to={`books/${book._id}`} ><img src={book.path} alt=''/></Link>
           <div className="caption">
-            <h4>{ book.title.slice(0, 10) }</h4>
+            <h4 style={{ color:'black' }}>{ book.title.slice(0, 10) }</h4>
           </div>
         </div>
       </div>

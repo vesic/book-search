@@ -36,7 +36,7 @@ class CategoryList extends Component {
             _.map( this.state.categories, (single, index) => 
               <li key={ index } 
                 onClick={ this.setSelectedCategory.bind(null, single) }
-                role="presentation" className={ this.state.selected === single ? 'active' : '' } ><a href="#">{ _.toUpper(single) }</a></li>
+                role="presentation" className={ this.state.selected === single ? 'active' : '' } ><a onClick={ e => e.preventDefault() } href="#">{ _.toUpper(single) }</a></li>
             )
           }
           </ul>
